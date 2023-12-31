@@ -36,9 +36,9 @@ const isian = () => {
     let isinyaBtn = document.querySelector('#isi')
     let section = 'Tabungan'
     const Name = document.querySelector('#Name')
-    const money = document.querySelector('#uang');
-    const date = document.querySelector('#tgl');
-    const note = document.querySelector('#ket');
+    const money = document.querySelector('#money');
+    const date = document.querySelector('#date');
+    const note = document.querySelector('#note');
     const cancelList = document.querySelectorAll('.cancel');
     const okOrang = document.querySelector('#okOrang');
     const okIsi = document.querySelector('#okIsi');
@@ -63,8 +63,8 @@ const isian = () => {
         date.textContent = `${tgl}`;
         let note = document.createElement('td');
         note.textContent = `${ket}`;
-        kotak.appendChild(money);
         kotak.appendChild(date);
+        kotak.appendChild(money);
         kotak.appendChild(note);
     
         return kotak
@@ -80,7 +80,7 @@ const isian = () => {
         kotakList.forEach(kotak => {
             kotak.parentNode.removeChild(kotak);
         })
-        for(i = 0; i < orang[i].length; i++){
+        for(i = 0; i < orang.uang.length; i++){
             let isi = display(orang.uang[i], orang.tanggal[i], orang.thing[i])
             tabel.appendChild(isi)
         }
@@ -172,9 +172,12 @@ const isian = () => {
         else if(section === 'Utang'){
             lib = utang;
         }
-        lib.uang.push(parseInt(money.value));
-        lib.tanggal.push(date.value);
-        lib.thing.push(note.value);
+        tableuang = lib[index].uang
+        tableket = lib[index].thing
+        tabletgl = lib[index].tanggal
+        tableuang.push(parseInt(money.value));
+        tabletgl.push(date.value);
+        tableket.push(note.value);
 
         renderTabel(lib[index])
     })

@@ -119,10 +119,24 @@ nav button.active{
 
 table, th, td{
     border:black solid 1px ;
+    text-align: center;
 }
 
 table{
     width: 100%;
     margin: auto;
     margin-bottom: 40px;
+}
+.daftar{
+    border-bottom:solid green 2px ;
+    margin-bottom: 10px;
+    width: 90%;
+}
+
+.list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px ;
 }
