@@ -25,18 +25,159 @@ function tambah(jenis, objek){
     }
 }
 
-const display = (duit, tgl, ket) =>{
-    let kotak = document.createElement('div');
-    kotak.classList.add('box');
-    let money = document.createElement('div');
-    money.textContent = `nominal : Rp${duit}`
-    let date = document.createElement('div');
-    date.textContent = `tanggal : ${tgl}`;
-    let note = document.createElement('div');
-    note.textContent = `catatan : ${ket}`;
-    kotak.appendChild(money);
-    kotak.appendChild(date);
-    kotak.appendChild(note);
 
-    return kotak
+
+const isian = () => {
+    const tabunganTab = document.querySelector('.nav-tabungan');
+    const utangTab = document.querySelector('.nav-utang');
+    const listNama = document.querySelector('.list');
+    const inside = document.querySelector('.inside')
+    let uwongBtn = document.querySelector('#orang');
+    let isinyaBtn = document.querySelector('#isi')
+    let section = 'Tabungan'
+    const Name = document.querySelector('#Name')
+    const money = document.querySelector('#uang');
+    const date = document.querySelector('#tgl');
+    const note = document.querySelector('#ket');
+    const cancelList = document.querySelectorAll('.cancel');
+    const okOrang = document.querySelector('#okOrang');
+    const okIsi = document.querySelector('#okIsi');
+
+
+    let index = 0;
+
+    cancelList.forEach(cancel => {
+        cancel.addEventListener('click', () =>{
+            let formBG = document.querySelector('.formBG');
+            formBG.classList.add('hidden')
+        })
+    })
+
+
+    const display = (duit, tgl, ket) =>{
+        let kotak = document.createElement('tr');
+        kotak.classList.add('kotak');
+        let money = document.createElement('td');
+        money.textContent = `Rp${duit}`
+        let date = document.createElement('td');
+        date.textContent = `${tgl}`;
+        let note = document.createElement('td');
+        note.textContent = `${ket}`;
+        kotak.appendChild(money);
+        kotak.appendChild(date);
+        kotak.appendChild(note);
+    
+        return kotak
+    }
+
+    function renderTabel(orang){
+        listNama.classList.add('hidden');
+        inside.classList.remove('hidden');
+        uwongBtn.classList.add('hidden');
+        isinyaBtn.classList.remove('hidden');
+        let tabel = document.querySelector('#table')
+        let kotakList = document.querySelectorAll('.kotak')
+        kotakList.forEach(kotak => {
+            kotak.parentNode.removeChild(kotak);
+        })
+        for(i = 0; i < orang[i].length; i++){
+            let isi = display(orang.uang[i], orang.tanggal[i], orang.thing[i])
+            tabel.appendChild(isi)
+        }
+        
+        
+    }
+
+    function displayNama (array){
+        for(i = 0; i < array.length; i++){
+            let nama = document.createElement('div');
+            nama.classList.add('daftar');
+            nama.textContent = array[i].name
+            nama.addEventListener('click', ()=>{
+                renderTabel(array[i]);
+                index = i;
+            })
+            listNama.appendChild(nama);
+        }
+    }
+
+    function renderNama(bagian){
+        inside.classList.add('hidden');
+        listNama.classList.remove('hidden')
+        isinyaBtn.classList.add('hidden');
+        uwongBtn.classList.remove('hidden');
+        let namaList = document.querySelectorAll('.daftar');
+        namaList.forEach(nama =>{
+            nama.parentNode.removeChild(nama);
+        })
+
+        displayNama(bagian)
+    }
+
+    tabunganTab.addEventListener('click', () =>{
+        tabunganTab.classList.add('active');
+        utangTab.classList.remove('active');
+
+        section = 'Tabungan'
+
+        renderNama(tabungan);
+    })
+
+    utangTab.addEventListener('click', () =>{
+        tabunganTab.classList.remove('active');
+        utangTab.classList.add('active');
+
+        section = 'Utang'
+
+        renderNama(utang)
+    }) 
+
+    uwongBtn.addEventListener('click', () =>{
+        let formBG = document.querySelector('.formBG');
+        let form1 = document.querySelector('.orang');
+        let form2 = document.querySelector('.isian');
+        formBG.classList.remove('hidden');
+        form1.classList.remove('hidden')
+        form2.classList.add('hidden');
+    });
+
+    isinyaBtn.addEventListener('click', ()=>{
+        let formBG = document.querySelector('.formBG');
+        let form1 = document.querySelector('.orang');
+        let form2 = document.querySelector('.isian');
+        formBG.classList.remove('hidden');
+        form2.classList.remove('hidden');
+        form1.classList.add('hidden');
+    })
+
+    okOrang.addEventListener('click', ()=>{
+        tambah(section, Thuman(Name.value));
+        let formBG = document.querySelector('.formBG');
+        formBG.classList.add('hidden');
+        let lib = '';
+        if (section === 'Tabungan'){
+            lib = tabungan;
+        }
+        else if(section === 'Utang'){
+            lib = utang;
+        }
+        renderNama(lib);
+    })
+
+    okIsi.addEventListener('click', ()=>{
+        let lib = '';
+        if (section === 'Tabungan'){
+            lib = tabungan;
+        }
+        else if(section === 'Utang'){
+            lib = utang;
+        }
+        lib.uang.push(parseInt(money.value));
+        lib.tanggal.push(date.value);
+        lib.thing.push(note.value);
+
+        renderTabel(lib[index])
+    })
 }
+
+let mulai = isian()
