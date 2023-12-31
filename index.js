@@ -88,14 +88,17 @@ const isian = () => {
         
     }
 
+    
+
     function displayNama (array){
         for(i = 0; i < array.length; i++){
             let nama = document.createElement('div');
             nama.classList.add('daftar');
             nama.textContent = array[i].name
-            nama.addEventListener('click', ()=>{
-                renderTabel(array[i]);
-                index = i;
+            nama.addEventListener('click', () =>{
+                let no = array.findIndex((x)=>{return x.name == nama.textContent})
+                index = no
+                renderTabel(array[index])
             })
             listNama.appendChild(nama);
         }
