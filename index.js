@@ -180,6 +180,9 @@ const isian = () => {
         tableket.push(note.value);
 
         renderTabel(lib[index])
+
+        let formBG = document.querySelector('.formBG');
+        formBG.classList.add('hidden');
     })
 }
 
