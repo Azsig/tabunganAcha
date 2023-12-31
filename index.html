@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabungan Acha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2>Punya Acha</h2>
+    </div>
+    <div class="main">
+        <nav>
+            <button class="nav-tabungan active" id="Tabungan">Tabungan</button>
+            <button class="nav-utang" id="Utang">Hutang</button>
+        </nav>
+
+        <div class="tabungan">
+            <div class="list">
+
+            </div>
+            <div class="daftar">
+                <p class="nama"></p>
+                <table>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Nominal</th>
+                        <th>Note</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <button class="add" id="orang">+</button>
+        <button class="add hidden" id="isi">+</button>
+    </div>
+    <div class="formBG hidden">
+        <form action="" class="formbox orang">
+            <div class="form">
+                <input type="text" id="Name" required placeholder="Nama">
+            </div>
+            <div class="btn">
+                <button type="button" id="okOrang">OK</button>
+                <button type="button" id="cancelOrang">Cancel</button>
+            </div>
+        </form>
+        <form action="" class="formbox isian ">
+            <div class="form">
+                <input type="number" name="uang" id="money" required placeholder="Nominal">
+                <input type="date" name="tgl" id="date" required>
+                <input type="text" name="ket" id="note" required placeholder="Keterangan">
+            </div>
+            <div class="btn">
+                <button type="button" id="okIsi">OK</button>
+                <button type="button" id="cancelIsi">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <div class="foot"></div>
+    
+</body>
+<script src="index.js"></script>
+</html>
