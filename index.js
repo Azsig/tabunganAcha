@@ -1,5 +1,5 @@
-const tabungan = [];
-const utang = [];
+let tabungan = [];
+let utang = [];
 
 function Thuman(nama){
     let name = nama
@@ -21,13 +21,17 @@ function tambah(jenis, objek){
 
 
 const isian = () => {
+
+    let section = 'Tabungan'
+    
+
+
     const tabunganTab = document.querySelector('.nav-tabungan');
     const utangTab = document.querySelector('.nav-utang');
     const listNama = document.querySelector('.list');
     const inside = document.querySelector('.inside')
     let uwongBtn = document.querySelector('#orang');
     let isinyaBtn = document.querySelector('#isi')
-    let section = 'Tabungan'
     const Name = document.querySelector('#Name')
     const cancelList = document.querySelectorAll('.cancel');
     const okOrang = document.querySelector('#okOrang');
@@ -242,6 +246,8 @@ const isian = () => {
             let loan = localStorage.getItem('utang');
             save = JSON.parse(save);
             loan = JSON.parse(loan);
+            tabungan = save
+            utang = loan
             if(section === 'Tabungan'){
                 renderNama(tabungan);
             }
@@ -250,8 +256,8 @@ const isian = () => {
             }
         }
     }
-
     reload()
+    
 }
 
 let mulai = isian()
