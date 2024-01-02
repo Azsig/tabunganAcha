@@ -6,14 +6,7 @@ function Thuman(nama){
     let thing = [];
     let uang = [];
     let tanggal = [];
-    let jumlah = () => {
-        let sum = 0
-        uang.forEach( num => {
-            sum += num;
-        })
-        return sum;
-    }
-    return {name, thing, uang, tanggal, jumlah}
+    return {name, thing, uang, tanggal}
 }
 
 function tambah(jenis, objek){
@@ -42,9 +35,20 @@ const isian = () => {
     const cancelList = document.querySelectorAll('.cancel');
     const okOrang = document.querySelector('#okOrang');
     const okIsi = document.querySelector('#okIsi');
+    const namaTable = document.querySelector('.nama');
 
 
     let index = 0;
+
+
+    let jumlah = (Uang) => {
+        let sum = 0
+        Uang.forEach( num => {
+            sum += num;
+        })
+        return sum;
+    }
+
 
     cancelList.forEach(cancel => {
         cancel.addEventListener('click', () =>{
@@ -64,10 +68,24 @@ const isian = () => {
         let note = document.createElement('td');
         note.textContent = `${ket}`;
         kotak.appendChild(date);
-        kotak.appendChild(money);
         kotak.appendChild(note);
+        kotak.appendChild(money);
     
         return kotak
+    }
+
+    const makeTotal = (Uang) =>{
+        let total = document.createElement('tr')
+        total.classList.add('kotak')
+        let tulisan = document.createElement('th')
+        let totalUang = document.createElement('td')
+        tulisan.colSpan = "2";
+        tulisan.textContent = 'Total';
+        totalUang.textContent = `Rp${jumlah(Uang)}`
+        total.appendChild(tulisan);
+        total.appendChild(totalUang);
+
+        return total;
     }
 
     function renderTabel(orang){
@@ -75,6 +93,7 @@ const isian = () => {
         inside.classList.remove('hidden');
         uwongBtn.classList.add('hidden');
         isinyaBtn.classList.remove('hidden');
+        namaTable.textContent = orang.name
         let tabel = document.querySelector('#table')
         let kotakList = document.querySelectorAll('.kotak')
         kotakList.forEach(kotak => {
@@ -84,7 +103,9 @@ const isian = () => {
             let isi = display(orang.uang[i], orang.tanggal[i], orang.thing[i])
             tabel.appendChild(isi)
         }
-        
+        if(orang.uang.length > 0){
+            tabel.appendChild(makeTotal(orang.uang));
+        }
         
     }
 
@@ -154,6 +175,9 @@ const isian = () => {
     })
 
     okOrang.addEventListener('click', ()=>{
+        if(Name.value === ''){
+            return
+        }
         tambah(section, Thuman(Name.value));
         let formBG = document.querySelector('.formBG');
         formBG.classList.add('hidden');
@@ -168,6 +192,9 @@ const isian = () => {
     })
 
     okIsi.addEventListener('click', ()=>{
+        if(money.value === ''){
+            return;
+        }
         let lib = '';
         if (section === 'Tabungan'){
             lib = tabungan;
@@ -187,6 +214,34 @@ const isian = () => {
         let formBG = document.querySelector('.formBG');
         formBG.classList.add('hidden');
     })
+
+    function saveData (){
+        localStorage.setItem(`tabungan`, JSON.stringify(tabungan));
+        localStorage.setItem(`utang`, JSON.stringify(utang));
+    }
+
+    function reload(){
+        if(!localStorage.tabungan && !localStorage.utang){
+            if(section === 'Tabungan'){
+                renderNama(tabungan);
+            }
+            else if(section === 'Utang'){
+                renderNama(utang);
+            }
+        }
+        else{
+            let save = localStorage.getItem('tabungan');
+            let loan = localStorage.getItem('utang');
+            save = JSON.parse(save);
+            loan = JSON.parse(loan);
+            if(section === 'Tabungan'){
+                renderNama(tabungan);
+            }
+            else if(section === 'Utang'){
+                renderNama(utang);
+            }
+        }
+    }
 }
 
 let mulai = isian()

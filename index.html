@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="head">
-        <h2>Punya Acha</h2>
+        <h2>Pembukuan Acha</h2>
     </div>
     <div class="main">
         <nav>
@@ -25,17 +25,18 @@
                 <table id="table">
                     <tr>
                         <th>Tanggal</th>
-                        <th>Nominal</th>
                         <th>Note</th>
+                        <th>Nominal</th>
                     </tr>
                 </table>
             </div>
         </div>
-        <button class="add" id="orang">+</button>
-        <button class="add hidden" id="isi">+</button>
+        <button class="add" id="orang">Tambah</button>
+        <button class="add hidden" id="isi">Tambah</button>
     </div>
     <div class="formBG hidden">
         <form action="" class="formbox orang">
+            <div id="perintah">Tolong masukkan nama Nasabah</div>
             <div class="form">
                 <input type="text" id="Name" required placeholder="Nama">
             </div>
@@ -47,7 +48,7 @@
         <form action="" class="formbox isian ">
             <div class="form">
                 <input type="number" name="uang" id="money" required placeholder="Nominal">
-                <input type="date" name="tgl" id="date" required>
+                <input type="date" name="tgl" id="date" required placeholder="Tanggal">
                 <input type="text" name="ket" id="note" required placeholder="Keterangan">
             </div>
             <div class="btn">
