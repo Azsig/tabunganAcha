@@ -128,9 +128,23 @@ nav button.active{
     padding: 10px;
 }
 
+.form>div{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 0.8rem;
+    font-weight: 50;
+}
+
 table, th, td{
     border:black solid 1px ;
     text-align: center;
+}
+
+td,th{
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 table{

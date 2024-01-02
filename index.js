@@ -29,13 +29,11 @@ const isian = () => {
     let isinyaBtn = document.querySelector('#isi')
     let section = 'Tabungan'
     const Name = document.querySelector('#Name')
-    const money = document.querySelector('#money');
-    const date = document.querySelector('#date');
-    const note = document.querySelector('#note');
     const cancelList = document.querySelectorAll('.cancel');
     const okOrang = document.querySelector('#okOrang');
     const okIsi = document.querySelector('#okIsi');
-    const namaTable = document.querySelector('.nama');
+    const ambil = document.querySelector('#ambil')
+    
 
 
     let index = 0;
@@ -89,6 +87,7 @@ const isian = () => {
     }
 
     function renderTabel(orang){
+        const namaTable = document.querySelector('.nama');
         listNama.classList.add('hidden');
         inside.classList.remove('hidden');
         uwongBtn.classList.add('hidden');
@@ -188,10 +187,14 @@ const isian = () => {
         else if(section === 'Utang'){
             lib = utang;
         }
+        saveData()
         renderNama(lib);
     })
 
     okIsi.addEventListener('click', ()=>{
+        const money = document.querySelector('#money');
+        const date = document.querySelector('#date');
+        const note = document.querySelector('#note');
         if(money.value === ''){
             return;
         }
@@ -202,12 +205,17 @@ const isian = () => {
         else if(section === 'Utang'){
             lib = utang;
         }
+        let okane = money.value
+        if(ambil.checked == true ){
+            okane = '-'+money.value;
+        }
         tableuang = lib[index].uang
         tableket = lib[index].thing
         tabletgl = lib[index].tanggal
-        tableuang.push(parseInt(money.value));
+        tableuang.push(parseInt(okane));
         tabletgl.push(date.value);
         tableket.push(note.value);
+        saveData();
 
         renderTabel(lib[index])
 
@@ -242,6 +250,8 @@ const isian = () => {
             }
         }
     }
+
+    reload()
 }
 
 let mulai = isian()
