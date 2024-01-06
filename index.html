@@ -31,11 +31,25 @@
                 </table>
             </div>
         </div>
-        <button class="add" id="orang">Tambah</button>
-        <button class="add hidden" id="isi">Tambah</button>
+        <div class="button">
+            <button class="tombol" id="hapus">Hapus</button>
+            <button class="tombol" id="orang">Tambah</button>
+            <button class="tombol hidden" id="isi">Tambah</button>
+        </div>
+       
     </div>
     <div class="formBG hidden">
-        <form action="" class="formbox orang">
+        <form action="" class="formbox Hapus hidden">
+            <div id="perintah">Tolong masukkan nama Nasabah yang ingin dihapus</div>
+            <div class="form">
+                <input type="text" id="NameHapus" required placeholder="Nama">
+            </div>
+            <div class="btn">
+                <button type="button" id="okhapus">OK</button>
+                <button type="button" class="cancel">Cancel</button>
+            </div>
+        </form>
+        <form action="" class="formbox orang hidden">
             <div id="perintah">Tolong masukkan nama Nasabah</div>
             <div class="form">
                 <input type="text" id="Name" required placeholder="Nama">
@@ -45,9 +59,9 @@
                 <button type="button" class="cancel">Cancel</button>
             </div>
         </form>
-        <form action="" class="formbox isian ">
+        <form action="" class="formbox isian hidden">
             <div class="form">
-                <input type="number" name="uang" id="money" required placeholder="Nominal">
+                <input type="string" name="uang" id="money" required placeholder="Nominal">
                 <input type="date" name="tgl" id="date" required placeholder="Tanggal">
                 <input type="text" name="ket" id="note" required placeholder="Keterangan">
                 <div>

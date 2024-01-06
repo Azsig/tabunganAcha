@@ -69,19 +69,25 @@ nav button.active{
     display: none;
 }
 
-.add{
+.tombol{
     font-size: 1.1rem;
-    position:absolute;
-    bottom: 20px;
-    right: auto;
-    left: 50%;
-    margin-left: -90px;
     background-color: rgb(234, 234, 241);
     width: 10rem;
     height: 30px;
     border-radius: 10px;
     border: #1f2224 solid 1px;
     box-shadow: 3px 3px 0 0 gray;
+}
+
+.button{
+    position:absolute;
+    bottom: 20px;
+    right: auto;
+    left: 50%;
+    margin-left: -90px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .formBG{
@@ -162,6 +168,8 @@ table{
     border-bottom:solid green 2px ;
     margin-bottom: 10px;
     width: 90%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .list{
@@ -174,4 +182,8 @@ table{
 
 tr:nth-child(even){
     background-color: rgb(218, 205, 205);
+}
+
+#delete svg{
+    width: 20px;
 }
